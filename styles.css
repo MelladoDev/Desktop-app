@@ -1,0 +1,39 @@
+:root {
+    color-scheme: light dark;
+  }
+  
+  body {
+    background-image: url("./src/Sprite-0003.png");
+    background-repeat: no-repeat;
+    background-size:cover ;
+    background-attachment: fixed;
+    display: flex ;
+
+    justify-content: center ;
+    align-items: center;
+
+   
+  }
+  
+  /* @media (prefers-color-scheme: dark) {
+    body { background: #333; color: white; }
+  }
+  
+  @media (prefers-color-scheme: light) {
+    body { background: #ddd; color: black;
+     }
+  }  */
+  canvas {
+    border: 1px solid black;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+  }
+  .togle-theme {
+    position: absolute;
+    top: 0;
+    right: 0;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
