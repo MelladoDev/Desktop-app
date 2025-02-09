@@ -7,12 +7,16 @@
     <link rel="stylesheet" type="text/css" href="./styles.css">
 </head>
 <body>
-   <div class="togle-theme">
-        <button id="toggle-dark-mode">Cambia el tema</button>
-    </div>
-    <div>
+    <header id="titlebar">
+        <div class="barra">        
+            <button id="minimizeBtn">➖</button>
+            <button id="closeBtn">❌</button>
+        </div>
+    </header>
+    <div id="content">
         <canvas ></canvas>
     </div>
+    
     <script src="renderer.js"></script>
     <script src="canvas.js"></script>
 </body>

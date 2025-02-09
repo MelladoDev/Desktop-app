@@ -1,19 +1,20 @@
 :root {
     color-scheme: light dark;
   }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
   
-  body {
-    background-image: url("./src/Sprite-0003.png");
+  #content {
+    background-image: url("./src/fondogameboy.png");
     background-repeat: no-repeat;
     background-size:cover ;
     background-attachment: fixed;
-    display: flex ;
-
-    justify-content: center ;
-    align-items: center;
-
-   
+    height: 100vh;
   }
+
   
   /* @media (prefers-color-scheme: dark) {
     body { background: #333; color: white; }
@@ -25,15 +26,32 @@
   }  */
   canvas {
     border: 1px solid black;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
+    margin: 12.4%;
+    width: 75vw;
+    height: 285px;
+    
   }
   .togle-theme {
     position: absolute;
-    top: 0;
-    right: 0;
+
     justify-content: center;
     align-items: center;
     cursor: pointer;
+  }
+  #titlebar {
+    display: block;
+    position: fixed;
+    height: 32px;
+    width: calc(100% - 2px); /*Compensate for body 1px border*/
+    background: #254053;
+    
+  }
+  .barra {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 0 10px;
+    gap: 4px;
   }
