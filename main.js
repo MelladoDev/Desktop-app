@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron/main')
+const { app, BrowserWindow, ipcMain } = require('electron/main')
 const path = require('node:path')
 
 let mainWindow
@@ -10,19 +10,15 @@ function createWindow ()  {
     alwaysOnTop: true, // Mantiene la ventana en primer plano
     frame: false, // Si quieres que tenga barra de título
     webPreferences: {
-      contexIsolation: false,
-      nodeIntegration: true,
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.js'),
+      devTools: true,
+
     }
   })
 
   mainWindow.loadFile('index.html');
-  mainWindow.webContents.openDevTools();
-  ipcMain.handle('get-window', () => mainWindow);
 
-  mainWindow.on('close', () => {
-    mainWindow = null
-  });
+
 }
 
 // Mover la ventana
@@ -40,20 +36,14 @@ ipcMain.on("move-window", (event, deltaX, deltaY) => {
   }
 });
 
+ipcMain.on('close-window', () => {
+    if (mainWindow) mainWindow.close();
+});
 
-// Cambiar el tema
-ipcMain.handle('dark-mode:toggle', () => {
-  if (nativeTheme.shouldUseDarkColors) {
-    nativeTheme.themeSource = 'light'
-  } else {
-    nativeTheme.themeSource = 'dark'
-  }
-  return nativeTheme.shouldUseDarkColors
-})
+ipcMain.on('minimize-window', () => {
+    if (mainWindow) mainWindow.minimize();
+});
 
-ipcMain.handle('dark-mode:system', () => {
-  nativeTheme.themeSource = 'system'
-})
 
 
 app.whenReady().then(() => {

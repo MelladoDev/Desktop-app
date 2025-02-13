@@ -13,6 +13,8 @@
     background-size:cover ;
     background-attachment: fixed;
     height: 100vh;
+    display: flex;
+    justify-content: center;
   }
 
   
@@ -26,18 +28,12 @@
   }  */
   canvas {
     border: 1px solid black;
-    margin: 12.4%;
-    width: 75vw;
-    height: 285px;
+    width: 300px;
+    height: 200px;
+    margin-top: 22%;
     
   }
-  .togle-theme {
-    position: absolute;
 
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
   #titlebar {
     display: block;
     position: fixed;

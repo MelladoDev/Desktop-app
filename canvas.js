@@ -1,5 +1,5 @@
 let img = new Image();
-img.src = 'src/frog_spritesheet.png';
+img.src = 'src/Cheska.png';
 img.onload = function() {
     window.requestAnimationFrame(gameLoop);
   };
@@ -8,8 +8,8 @@ let canvas = document.querySelector('canvas');
 let ctx = canvas.getContext('2d');
 
 const scale = 1;
-const width = 64;
-const height = 32;
+const width = 128;
+const height = 128;
 const scaledWidth = scale * width;
 const scaledHeight = scale * height;
 
@@ -19,15 +19,15 @@ function drawFrame(frameX, frameY, canvasX, canvasY) {
                 canvasX, canvasY, scaledWidth, scaledHeight);
 }
 
-const CYCLE_LOOP = [0, 1, 2, 3];
+const CYCLE_LOOP = [0, 1, 2, 3,4,5,6];
 let currentLoopIndex = 0;
 let frameCount = 0;
 const FRAME_LIMIT = 12;
 
 const FACING_DOWN = 0;
-const FACING_UP = 0;
-const FACING_LEFT = 0;
-const FACING_RIGHT = 3;
+const FACING_UP = 1;
+const FACING_LEFT = 1;
+const FACING_RIGHT = 0;
 let currentDirection = FACING_DOWN;
 
 
@@ -66,7 +66,7 @@ function gameLoop() {
         positionX -= MOVEMENT_SPEED;
         currentDirection = FACING_LEFT;
         hasMoved = true;
-      } else if (keyPresses[" "]) {
+      } else if (keyPresses.d) {
         positionX += MOVEMENT_SPEED;
         currentDirection = FACING_RIGHT;
         hasMoved = true;

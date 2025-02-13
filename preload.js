@@ -1,10 +1,5 @@
 const { contextBridge, ipcRenderer } = require('electron/renderer')
 
-contextBridge.exposeInMainWorld('darkMode', {
-  toggle: () => ipcRenderer.invoke('dark-mode:toggle'),
-  system: () => ipcRenderer.invoke('dark-mode:system')
-})
-
 let isDragging = false;
 let startX = 0, startY = 0;
 
@@ -31,21 +26,7 @@ document.addEventListener("mousemove", (event) => {
   }
 });
 
-// Asegúrate de que los botones existan antes de agregar los event listeners
-const minimizeButton = document.getElementById("minimizeBtn");
-const closeButton = document.getElementById("closeBtn");
-
-// Si los botones existen, añadirles los eventos
-if (minimizeButton) {
-  minimizeButton.addEventListener("click", (event) => {
-    event.stopPropagation();  // Prevenir que el clic también mueva la ventana
-    ipcRenderer.send("minimize-window");
-  });
-}
-
-if (closeButton) {
-  closeButton.addEventListener("click", (event) => {
-    event.stopPropagation();  // Prevenir que el clic también mueva la ventana
-    ipcRenderer.send("close-window");
-  });
-}
+contextBridge.exposeInMainWorld('electronAPI', {
+  closeWindow: () => ipcRenderer.send('close-window'),
+  minimizeWindow: () => ipcRenderer.send('minimize-window')
+});
